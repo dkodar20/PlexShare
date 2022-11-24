@@ -450,7 +450,7 @@ namespace PlexShareScreenshare.Server
                 try
                 {
                     SharedClientScreen client = _subscribers[clientId];
-                    client.PutImage(image);
+                    client.PutImage(image, client.TaskId);
                 }
                 catch (Exception e)
                 {
