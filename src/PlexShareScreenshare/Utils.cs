@@ -6,56 +6,14 @@
 ///</summary>
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Windows.Media.Imaging;
 
 namespace PlexShareScreenshare
 {
-    /// <summary>
-    /// struct for storing x and y coordinates of a pixel
-    /// </summary>
-    public struct Coordinates
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public bool Equals(Coordinates p) => X == p.X && Y == p.Y;
-        public static bool operator ==(Coordinates lhs, Coordinates rhs) => lhs.Equals(rhs);
-        public static bool operator !=(Coordinates lhs, Coordinates rhs) => !(lhs == rhs);
-    }
-
-    /// <summary>
-    /// struct for storing RGB value of a pixel
-    /// </summary>
-    public struct RGB
-    {
-        public int R { get; set; }
-        public int G { get; set; }
-        public int B { get; set; }
-
-        public bool Equals(RGB p) => R == p.R && G == p.G && B == p.B;
-        public static bool operator ==(RGB lhs, RGB rhs) => lhs.Equals(rhs);
-        public static bool operator !=(RGB lhs, RGB rhs) => !(lhs == rhs);
-    }
-
-    /// <summary>
-    /// struct for storing both the coordinates and the RGB values
-    /// </summary>
-    public struct Pixel
-    {
-        public Coordinates Coordinates { get; set; }
-        public RGB RGB { get; set; }
-
-        public bool Equals(Pixel p) => Coordinates == p.Coordinates && RGB == p.RGB;
-        public static bool operator ==(Pixel lhs, Pixel rhs) => lhs.Equals(rhs);
-        public static bool operator !=(Pixel lhs, Pixel rhs) => !(lhs == rhs);
-    }
-
     /// <summary>
     /// struct for storing the resolution of a image
     /// </summary>
@@ -67,20 +25,6 @@ namespace PlexShareScreenshare
         public bool Equals(Resolution p) => Height == p.Height && Width == p.Width;
         public static bool operator ==(Resolution lhs, Resolution rhs) => lhs.Equals(rhs);
         public static bool operator !=(Resolution lhs, Resolution rhs) => !(lhs == rhs);
-    }
-
-    /// <summary>
-    /// frame struct storing resolution of the image and list of
-    /// pixels which are different from the previous image
-    /// </summary>
-    public struct Frame
-    {
-        public Resolution Resolution { get; set; }
-        public List<Pixel> Pixels { get; set; }
-
-        public bool Equals(Frame p) => Resolution == p.Resolution && Pixels.SequenceEqual(p.Pixels);
-        public static bool operator ==(Frame lhs, Frame rhs) => lhs.Equals(rhs);
-        public static bool operator !=(Frame lhs, Frame rhs) => !(lhs == rhs);
     }
 
     /// <summary>
